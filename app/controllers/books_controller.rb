@@ -32,32 +32,30 @@ end
 # ーーー登録ユーザーのみ表示ーーー
 
 
-def edit
+  def edit
     @book = Book.find(params[:id])
     if @book.user == current_user
-    render :edit
+      render :edit
     else
-    redirect_to books_path
+      redirect_to books_path
     end
-    
-end
+  end
 
-def update
+  def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-    redirect_to book_path(@book)
-    flash[:notice] = "You have updated book successfully."
+      redirect_to book_path(@book)
+      flash[:notice] = "You have updated book successfully."
     else
-    render :edit
+      render :edit
     end
-    
-end
+  end
 
-def destroy
+  def destroy
     book = Book.find(params[:id])
     book.destroy
     redirect_to books_path
-end
+  end
 
 # ーーー（end)登録ユーザーのみ表示ーーー
 
@@ -66,6 +64,5 @@ private
   def book_params
     params.require(:book).permit(:title,:body,:profile_image)
   end
-
 
 end
