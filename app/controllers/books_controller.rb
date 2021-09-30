@@ -12,13 +12,15 @@ def create
     @user = current_user
     @books = Book.all
     render :index
-    end 
+    end
 end
 
 def show
   @new_book = Book.new
   @book = Book.find(params[:id])
   @user = @book.user
+  @comments = @book.comments
+  @comment = current_user.comments.new
 end
 
 def index
@@ -26,6 +28,7 @@ def index
     @book = Book.new
     @user = current_user
     @users = User.all
+
 end
 
 
